@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import environ
+import string
 
 from split_settings.tools import include
 
@@ -53,6 +54,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = []
 
 LOCAL_APPS = [
+    'app.links',
     'app.users',
 ]
 
@@ -152,6 +154,12 @@ STATIC_ROOT = root('assets')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = root('media')
+
+
+# Code settings
+CODE_LEN = env('CODE_LEN', cast=int)
+
+CODE_TARGET = string.ascii_letters + '0123456789'
 
 
 # Include mode config

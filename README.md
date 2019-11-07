@@ -1,3 +1,3 @@
-# AWS License Bot
+# Link To Server
 
-> AWS 證照練習機器人
+> 個人縮網址服務

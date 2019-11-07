@@ -5,5 +5,5 @@ from .serializers import LinkSerializer
 
 
 class LinkViewSet(ModelViewSet):
-    queryset = Link.objects.all()
+    queryset = Link.objects.order_by('id')
     serializer_class = LinkSerializer

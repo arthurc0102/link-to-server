@@ -1,7 +1,10 @@
 from django.db.utils import IntegrityError
 
+from rest_framework.generics import get_object_or_404
+from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
 
 from .models import Link
 from .serializers import LinkSerializer
@@ -29,3 +32,9 @@ class LinkViewSet(ModelViewSet):
             raise ValidationError({
                 'url': ['This url is already exists for this user'],
             })
+
+    @action(['get'], False, 's/(?P<code>[^/.]+)', permission_classes=[])
+    def search(self, request, code):
+        link = get_object_or_404(Link, code=code)
+        serializer = self.get_serializer(link)
+        return Response(serializer.data)

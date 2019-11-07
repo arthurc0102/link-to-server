@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  django:
+    image: ${DOCKER_IMAGE}:${DOCKER_TAG}
+    restart: always
+    volumes:
+      - django_log:/src/log
+      - django_media:/src/media
+      - django_static:/src/assets
+    environment:
+      SECRET_KEY: $SECRET_KEY
+      DEBUG: $DEBUG
+      MODE: $MODE
+      ALLOWED_HOSTS: $ALLOWED_HOSTS
+      DATABASE_URL: $DATABASE_URL
+      CODE_LEN: $CODE_LEN
+      JWT_ACCESS_TOKEN_LIFETIME: $JWT_ACCESS_TOKEN_LIFETIME
+      JWT_REFRESH_TOKEN_LIFETIME: $JWT_REFRESH_TOKEN_LIFETIME
+      CORS_ORIGIN_WHITELIST: $CORS_ORIGIN_WHITELIST
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:${DOMAIN}"
+      - "traefik.frontend.entryPoints=http,https"
+      - "traefik.frontend.redirect.entryPoint=https"
+    networks:
+      - web
+
+volumes:
+  django_log:
+  django_media:
+  django_static:
+
+networks:
+  web:
+    external: true

@@ -41,6 +41,8 @@ MODE = env('MODE', default='development' if DEBUG else 'production')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
+CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST', default=[])
+
 
 # Application definition
 

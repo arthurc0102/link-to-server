@@ -18,6 +18,11 @@ from django.urls import path, include
 
 from rest_framework.documentation import include_docs_urls
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 from . import docs, versions
 
 
@@ -27,6 +32,8 @@ api_urlpatterns = [
 
 urlpatterns = [
     path('v1/', include((api_urlpatterns, versions.v1))),
-    path('admin/', admin.site.urls),
+    path('token/obtain', TokenObtainPairView.as_view(), name='token-obtain'),
+    path('token/refresh', TokenRefreshView.as_view(), name='token-refresh'),
     path('docs/', include_docs_urls(**docs.config)),
+    path('admin/', admin.site.urls),
 ]

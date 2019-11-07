@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import environ
 import string
 
+from datetime import timedelta
+
 from split_settings.tools import include
 
 
@@ -178,6 +180,19 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
+}
+
+
+# JWT settings
+
+JWT_ACCESS_TOKEN_LIFETIME = env('JWT_ACCESS_TOKEN_LIFETIME', cast=float)
+
+JWT_REFRESH_TOKEN_LIFETIME = env('JWT_REFRESH_TOKEN_LIFETIME', cast=float)
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=JWT_ACCESS_TOKEN_LIFETIME),
+    'REFRESH_TOKEN_LIFETIME': timedelta(hours=JWT_REFRESH_TOKEN_LIFETIME),
+    'ROTATE_REFRESH_TOKENS': True,
 }
 
 

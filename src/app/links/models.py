@@ -17,7 +17,7 @@ class Link(models.Model):
         validators=[validate_code_in_target],
     )
     url = models.URLField()
-    creator = models.ForeignKey(get_user_model(), models.CASCADE, 'links')
+    creator = models.ForeignKey(User, models.CASCADE, 'links', null=True)
     create_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

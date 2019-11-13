@@ -14,6 +14,12 @@ class LinkViewSet(ModelViewSet):
     queryset = Link.objects.order_by('id')
     serializer_class = LinkSerializer
 
+    def get_permissions(self):
+        if self.action == 'create':
+            return []
+
+        return super().get_permissions()
+
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.request.user.is_staff:
@@ -22,6 +28,10 @@ class LinkViewSet(ModelViewSet):
         return queryset
 
     def perform_create(self, serializer):
+        if not self.request.user.is_authenticated:
+            serializer.save()
+            return
+
         # Handle unique together, because creator is not required in serializer
         try:
             serializer.save(creator=self.request.user)

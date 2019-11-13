@@ -12,3 +12,15 @@ class LinkSerializer(serializers.ModelSerializer):
             'url',
             'create_at',
         )
+
+
+class LinkAnonymousSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Link
+        fields = (
+            'code',
+            'url',
+        )
+        read_only_fields = (
+            'code',
+        )

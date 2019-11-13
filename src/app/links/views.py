@@ -7,12 +7,18 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 
 from .models import Link
-from .serializers import LinkSerializer
+from .serializers import LinkSerializer, LinkAnonymousSerializer
 
 
 class LinkViewSet(ModelViewSet):
     queryset = Link.objects.order_by('id')
     serializer_class = LinkSerializer
+
+    def get_serializer_class(self):
+        if not self.request.user.is_authenticated:
+            return LinkAnonymousSerializer
+
+        return super().get_serializer_class()
 
     def get_permissions(self):
         if self.action == 'create':

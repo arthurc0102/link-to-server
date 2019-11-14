@@ -30,7 +30,7 @@ class LinkViewSet(ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        if self.request.user.is_staff:
+        if not self.request.user.is_staff:
             queryset = queryset.filter(creator=self.request.user)
 
         return queryset

@@ -31,9 +31,9 @@ api_urlpatterns = [
 ]
 
 urlpatterns = [
-    path('api/v1/', include((api_urlpatterns, versions.v1))),
-    path('api/auth/login', TokenObtainPairView.as_view(), name='auth-login'),
-    path('api/auth/refresh', TokenRefreshView.as_view(), name='auth-refresh'),
-    path('api/docs/', include_docs_urls(**docs.config)),
-    path('api/admin/', admin.site.urls),
+    path('v1/', include((api_urlpatterns, versions.v1))),
+    path('auth/login', TokenObtainPairView.as_view(), name='auth-login'),
+    path('auth/refresh', TokenRefreshView.as_view(), name='auth-refresh'),
+    path('docs/', include_docs_urls(**docs.config)),
+    path('admin/', admin.site.urls),
 ]

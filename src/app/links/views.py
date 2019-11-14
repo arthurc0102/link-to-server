@@ -5,7 +5,6 @@ from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from rest_framework.pagination import PageNumberPagination
 
 from .models import Link
 from .serializers import LinkSerializer, LinkAnonymousSerializer
@@ -14,7 +13,6 @@ from .serializers import LinkSerializer, LinkAnonymousSerializer
 class LinkViewSet(ModelViewSet):
     queryset = Link.objects.order_by('id')
     serializer_class = LinkSerializer
-    pagination_class = PageNumberPagination
 
     def get_serializer_class(self):
         if not self.request.user.is_authenticated:

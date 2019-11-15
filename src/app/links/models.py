@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import CASCADE
 
 from utils.validators import validate_code_in_target
 
@@ -17,7 +18,7 @@ class Link(models.Model):
         validators=[validate_code_in_target],
     )
     url = models.URLField()
-    creator = models.ForeignKey(User, models.CASCADE, 'links', null=True)
+    creator = models.ForeignKey(User, CASCADE, 'links', null=True, blank=True)
     create_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -57,6 +57,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'drf_yasg',
 ]
 
 LOCAL_APPS = [
@@ -173,7 +174,6 @@ CODE_TARGET = string.ascii_letters + '0123456789'
 
 # Rest framework settings
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',  # noqa: E501
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',

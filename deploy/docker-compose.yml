@@ -22,8 +22,8 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:${DOMAIN}"
-      - "traefik.frontend.rule=PathPrefixStrip:${PATH_PREFIX}"
+      - "traefik.frontend.rule1=Host:${DOMAIN}"
+      - "traefik.frontend.rule2=PathPrefixStrip:${PATH_PREFIX}"
       - "traefik.frontend.entryPoints=http,https"
       - "traefik.frontend.redirect.entryPoint=https"
     networks:

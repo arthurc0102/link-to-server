@@ -1,0 +1,24 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+werkzeug = "*"
+bpython = "*"
+flake8 = "*"
+flake8-commas = "*"
+mypy = "*"
+
+[packages]
+django = "*"
+django-environ = "*"
+django-extensions = "*"
+django-split-settings = "*"
+djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+drf-yasg = "*"
+psycopg2-binary = "*"
+
+[requires]
+python_version = "3.8"

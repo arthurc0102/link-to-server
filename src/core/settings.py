@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import environ
+import string
 
 from datetime import timedelta
 
@@ -63,6 +64,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'app.shorten',
     'app.users',
 ]
 
@@ -185,6 +187,13 @@ REST_FRAMEWORK = {
 }
 
 
+# Code settings
+
+CODE_LEN = env('CODE_LEN', cast=int)
+
+CODE_TARGET = string.ascii_letters + '0123456789'
+
+
 # JWT settings
 
 JWT_ACCESS_TOKEN_LIFETIME = env('JWT_ACCESS_TOKEN_LIFETIME', cast=float)
@@ -202,6 +211,7 @@ SIMPLE_JWT = {
 
 ADMIN_REORDER = [
     {'app': 'auth', 'models': ('users.User', 'auth.Group')},
+    'shorten',
 ]
 
 

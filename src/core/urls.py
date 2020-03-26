@@ -32,7 +32,6 @@ api_urlpatterns = [
 
 urlpatterns = [
     path('api/v1/', include((api_urlpatterns, versions.v1))),
-
     path('docs/', SchemaView.with_ui(), name='docs'),
     path('admin/', admin.site.urls),
 ]

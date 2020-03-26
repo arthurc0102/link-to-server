@@ -53,9 +53,10 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'admin_reorder',
     'django_extensions',
-    'rest_framework',
     'drf_yasg',
+    'rest_framework',
 ]
 
 LOCAL_APPS = [
@@ -72,6 +73,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -189,6 +192,13 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(hours=JWT_REFRESH_TOKEN_LIFETIME),
     'ROTATE_REFRESH_TOKENS': True,
 }
+
+
+# Admin reorder
+
+ADMIN_REORDER = [
+    {'app': 'auth', 'models': ('users.User', 'auth.Group')},
+]
 
 
 # Include mode config

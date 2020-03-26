@@ -12,6 +12,7 @@ mypy = "*"
 
 [packages]
 django = "*"
+django-cors-headers = "*"
 django-environ = "*"
 django-extensions = "*"
 django-split-settings = "*"

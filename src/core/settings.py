@@ -40,6 +40,8 @@ MODE = env('MODE', default='development' if DEBUG else 'production')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
+CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST', default=[])
+
 
 # Application definition
 
@@ -54,6 +56,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'admin_reorder',
+    'corsheaders',
     'django_extensions',
     'drf_yasg',
     'rest_framework',
@@ -66,6 +69,9 @@ LOCAL_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -73,8 +79,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'core.urls'

@@ -34,6 +34,7 @@ RUN mv /docker/docker-entrypoint.sh /usr/local/bin/entrypoint && \
     \
     mv /docker/django.logrotate.conf /etc/logrotate.d/django && \
     mv /docker/django-logrotate.sh /etc/periodic/daily/django-logrotate && \
+    chmod 644 /etc/logrotate.d/django && \
     chmod +x /etc/periodic/daily/django-logrotate
 
 ENTRYPOINT [ "entrypoint" ]

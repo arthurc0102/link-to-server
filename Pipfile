@@ -9,7 +9,7 @@ ipython = "*"
 werkzeug = "*"
 
 [packages]
-django = "*"
+django = "<3"
 django-environ = "*"
 django-split-settings = "*"
 psycopg2-binary = "*"

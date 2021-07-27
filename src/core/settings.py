@@ -151,7 +151,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-PATH_PREFIX = env('PATH_PREFIX', default='')
+PATH_PREFIX = env('PATH_PREFIX', default='/api')
 
 STATIC_URL = f'{PATH_PREFIX}/static/'
 
@@ -167,7 +167,7 @@ MEDIA_ROOT = root('media')
 
 
 # Code settings
-CODE_LEN = env('CODE_LEN', cast=int)
+CODE_LEN = env('CODE_LEN', cast=int, default=6)
 
 CODE_TARGET = string.ascii_letters + '0123456789'
 
@@ -189,9 +189,17 @@ REST_FRAMEWORK = {
 
 # JWT settings
 
-JWT_ACCESS_TOKEN_LIFETIME = env('JWT_ACCESS_TOKEN_LIFETIME', cast=float)
+JWT_ACCESS_TOKEN_LIFETIME = env(
+    'JWT_ACCESS_TOKEN_LIFETIME',
+    cast=float,
+    default=1,
+)
 
-JWT_REFRESH_TOKEN_LIFETIME = env('JWT_REFRESH_TOKEN_LIFETIME', cast=float)
+JWT_REFRESH_TOKEN_LIFETIME = env(
+    'JWT_REFRESH_TOKEN_LIFETIME',
+    cast=float,
+    default=24,
+)
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=JWT_ACCESS_TOKEN_LIFETIME),

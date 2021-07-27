@@ -11,9 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-from utils.wsgi import ParseReverseProxyPrefix
-
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
-application = ParseReverseProxyPrefix(get_wsgi_application())
+application = get_wsgi_application()

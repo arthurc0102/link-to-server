@@ -8,7 +8,8 @@ COPY ./Pipfile .
 COPY ./Pipfile.lock .
 
 RUN pip3 install --no-cache-dir pipenv \
-  && pipenv install --system --deploy --ignore-pipfile -v
+  && pipenv install --system --deploy --ignore-pipfile -v \
+  && pipenv --clear
 
 COPY ./src .
 COPY ./docker /docker

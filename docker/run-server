@@ -2,7 +2,7 @@
 set -e
 
 echo "Waiting for Database to start...."
-python3 manage.py shell << EOF
+python manage.py shell << EOF
 from django.db import connections
 from django.db.utils import OperationalError
 
@@ -34,15 +34,10 @@ for c in connections.all():
 EOF
 
 echo "Collecting static files..."
-python3 manage.py collectstatic --noinput
+python manage.py collectstatic --noinput
 
 echo "Migrating Database"
-python3 manage.py migrate
+python manage.py migrate
 
-echo "Make log dir"
-[[ -d ./log/archived ]] || mkdir -p ./log/archived
-
-echo "Run crontab"
-crond
-
-exec "$@"
+echo "Run server"
+gunicorn --bind=:8000 --workers=4 core.wsgi
